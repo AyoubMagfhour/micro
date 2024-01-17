@@ -36,7 +36,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: root
 
   commente:
-    image: ayoub/commente:latest
+    image: ayoub/commentaire:latest
     ports:
       - "8084:8084"
     depends_on:
