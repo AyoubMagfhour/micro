@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+  eurekaserver:
+    image: ayoub/eurekaserver:latest
+    ports:
+      - "8761:8761"
+
+  gateway:
+    image: ayoub/gateway:latest
+    ports:
+      - "8888:8888"
+    depends_on:
+      - eurekaserver
+
+  user:
+    image: ayoub/user:latest
+    ports:
+      - "8081:8081"
+    depends_on:
+      - eurekaserver
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://user-db:3306/userblog?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  post:
+    image: ayoub/post:latest
+    ports:
+      - "8082:8082"
+    depends_on:
+      - eurekaserver
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://post-db:3306/Postdb?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  commente:
+    image: ayoub/commente:latest
+    ports:
+      - "8084:8084"
+    depends_on:
+      - eurekaserver
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://comment-db:3306/commentairerblog?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  favorite:
+    image: ayoub/favorite:latest
+    ports:
+      - "8083:8083"
+    depends_on:
+      - eurekaserver
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://favorite-db:3306/favoritblog?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  frontend:
+    image: ayoub/front:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - gateway
