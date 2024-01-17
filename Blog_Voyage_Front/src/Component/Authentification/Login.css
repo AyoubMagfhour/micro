@@ -1,0 +1,76 @@
+#login {
+    height: 100vh;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+#login_container{
+    overflow: hidden;
+}
+button {
+    font-family: inherit;
+    font-size: 20px;
+    background: #FFA500;
+    color: white;
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+    width: 150px;
+  }
+  
+  button span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  
+  button svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  button:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+  }
+  
+  button:hover svg {
+    transform:   translateX(3rem) rotate(45deg) scale(1.1);
+  }
+  
+  button:hover span {
+    transform: translateX(10em);
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  @keyframes fly-1 {
+    from {
+      transform: translateY(0.1em);
+    }
+  
+    to {
+      transform: translateY(-0.1em);
+    }
+  }
+
+  #image_login{
+    background-image: url('https://guides.williams.edu/files/2016/06/travel-04.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: 50%;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+  }
+  

@@ -1,0 +1,70 @@
+#header{
+    height: 70vh;
+    overflow: hidden;
+    background-image: url('https://focus.nouvelobs.com/2022/12/14/1091/0/6548/3274/1377/667/75/0/3c3af27_1671023973821-00-image-ga-na-rique-road-trip.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 1px 86px 5px 3px rgba(0,0,0,0.1) inset;
+    -webkit-box-shadow: 1px 86px 5px 3px rgba(0,0,0,0.1) inset;
+    -moz-box-shadow: 1px 86px 5px 3px rgba(0,0,0,0.1) inset;
+}
+#profil{
+    background-color: #0336FF;
+    border-radius: 10px;
+}
+#nav li a{
+    font-size: 20px;
+    text-decoration: none;
+    color: #FFA500;
+    font-weight: 500;
+}
+#nav li:hover{
+    background-color: #0336FF;
+    border-radius: 10px;
+    
+}
+#nav li a:hover{
+    color: aliceblue;
+}
+#logop{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+}
+#card{
+    height: 70vh;
+    width: 25vw;
+    border-radius: 15px;
+}
+#discription{
+    text-align: justify;
+}
+#card2{
+    height: 80vh;
+    width: 53vw;
+    border-radius: 15px;
+}
+#bar{
+    height: 1.5rem;
+    width: 0.5rem;
+    background-color: #FFA500;
+}
+#content{
+    font-size: 20px;
+    text-align: justify;
+}
+#minicard{
+    border: none;
+}
+footer{
+    height: 50vh;
+    background-color: #535353;
+}
+
+.remove-hover:hover {
+    background-color: transparent !important; /* Set the background to transparent on hover */
+}
