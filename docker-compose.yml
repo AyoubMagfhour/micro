@@ -13,49 +13,109 @@ services:
     depends_on:
       - eurekaserver
 
-  user:
+  user-db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: userblog
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - user-db-data:/var/lib/mysql
+
+  user-service:
     image: ayoub/user:latest
     ports:
       - "8081:8081"
     depends_on:
       - eurekaserver
+      - gateway
+      - user-db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/userblog?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://user-db:3306/userblog?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8081/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
-  post:
+  post-db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: Postdb
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - post-db-data:/var/lib/mysql
+
+  post-service:
     image: ayoub/post:latest
     ports:
       - "8082:8082"
     depends_on:
       - eurekaserver
+      - gateway
+      - post-db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/Postdb?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://post-db:3306/Postdb?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8082/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
-  commente:
-    image: ayoub/commente:latest
+  commentaire-db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: commentairerblog
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - commentaire-db-data:/var/lib/mysql
+
+  commentaire-service:
+    image: ayoub/commentaire:latest
     ports:
       - "8084:8084"
     depends_on:
       - eurekaserver
+      - gateway
+      - commentaire-db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/commentairerblog?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://commentaire-db:3306/commentairerblog?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8084/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
-  favorite:
+  favorite-db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: favoritblog
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - favorite-db-data:/var/lib/mysql
+
+  favorite-service:
     image: ayoub/favorite:latest
     ports:
       - "8083:8083"
     depends_on:
       - eurekaserver
+      - gateway
+      - favorite-db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/favoritblog?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://favorite-db:3306/favoritblog?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8083/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   frontend:
     image: ayoub/front:latest
@@ -63,3 +123,9 @@ services:
       - "80:80"
     depends_on:
       - gateway
+
+volumes:
+  user-db-data:
+  post-db-data:
+  commentaire-db-data:
+  favorite-db-data:
