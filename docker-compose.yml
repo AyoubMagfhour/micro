@@ -13,14 +13,47 @@ services:
     depends_on:
       - eurekaserver
 
+  mysql_user:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: userblog
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+
+  mysql_post:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: postdb
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+
+  mysql_commente:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: commentdb
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3308:3306"
+
+  mysql_favorite:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: favoritedb
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3309:3306"
+
   user:
     image: ayoub/user:latest
     ports:
       - "8081:8081"
     depends_on:
       - eurekaserver
+      - mysql_user
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://user-db:3306/userblog?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_user:3306/userblog?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
 
@@ -30,8 +63,9 @@ services:
       - "8082:8082"
     depends_on:
       - eurekaserver
+      - mysql_post
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://post-db:3306/postdb?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_post:3306/postdb?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
 
@@ -41,8 +75,9 @@ services:
       - "8084:8084"
     depends_on:
       - eurekaserver
+      - mysql_commente
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://comment-db:3306/commentdb?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_commente:3306/commentdb?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
 
@@ -52,8 +87,9 @@ services:
       - "8083:8083"
     depends_on:
       - eurekaserver
+      - mysql_favorite
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://favorite-db:3306/favoritedb?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_favorite:3306/favoritedb?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
 
