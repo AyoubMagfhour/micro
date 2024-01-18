@@ -5,8 +5,7 @@ COPY ./pom.xml .
 RUN mvn clean package
 
 # Stage 2: Create the final image
-
-FROM openjdk:17-jdk-alpine
+FROM adoptopenjdk:17-jdk-hotspot-bionic
 VOLUME /tmp
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
