@@ -20,7 +20,7 @@ services:
     depends_on:
       - eurekaserver
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://user-db:3306/userblog?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/userblog?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
 
@@ -31,7 +31,7 @@ services:
     depends_on:
       - eurekaserver
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://post-db:3306/Postdb?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/Postdb?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
 
@@ -42,7 +42,7 @@ services:
     depends_on:
       - eurekaserver
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://comment-db:3306/commentairerblog?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/commentairerblog?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
 
@@ -53,7 +53,7 @@ services:
     depends_on:
       - eurekaserver
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://favorite-db:3306/favoritblog?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/favoritblog?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
 
