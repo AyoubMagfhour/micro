@@ -97,7 +97,7 @@ const Login = ({history}) => {
               <div class="col">
                 <br></br>
                 <br></br>
-                <Link to="/Create_Accout" style={{color : '#FFA500' , fontWeight : 500 }}>CrÃ©er Votre Compte personnel</Link>
+                <Link to="/Create_Accout" style={{color : '#FFA500' , fontWeight : 500 }}>CrÃ©er Votre Compte perso</Link>
               </div>
               <div class="col">
                 <Link to="/Email_Recup" style={{color : '#FFA500' , marginLeft : '95px' , marginBottom : '30px' , fontWeight : 500}}>Mot de passe oublier ?</Link>
